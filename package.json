@@ -1,20 +1,23 @@
 {
   "name": "jumia_replica_back",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server/index.js",
   "repository": "https://github.com/mikenthiwa/jumia_replica_back.git",
   "author": "Michael",
   "license": "MIT",
   "scripts": {
-    "start:dev": "nodemon node_modules/.bin/babel-node index.js",
+    "start:dev": "nodemon node_modules/.bin/babel-node src/server/index.js",
     "test": "jest src --coverage",
     "db:migrate": "sequelize db:migrate",
-    "db:migrate:undo": "sequelize db:migrate:undo"
+    "db:migrate:undo": "sequelize db:migrate:undo",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "yarn run clean && yarn run build-babel",
+    "start": "yarn install && yarn run build && node ./build/server/index.js"
   },
   "dependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
-    "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
     "body-parser": "^1.19.0",
@@ -30,6 +33,7 @@
     "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {
+    "@babel/node": "^7.4.5",
     "jest": "^24.8.0"
   }
 }
