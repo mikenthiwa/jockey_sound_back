@@ -7,20 +7,27 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "nodemon node_modules/.bin/babel-node index.js",
-    "test": "jest src --coverage"
+    "test": "jest src --coverage",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:undo": "sequelize db:migrate:undo"
   },
   "dependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "logger": "^0.0.1",
     "morgan": "^1.9.1",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^5.8.7",
+    "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {
     "jest": "^24.8.0"
