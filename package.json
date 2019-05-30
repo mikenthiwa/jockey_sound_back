@@ -6,8 +6,9 @@
   "author": "Michael",
   "license": "MIT",
   "scripts": {
-    "start:dev": "nodemon node_modules/.bin/babel-node src/server/index.js",
-    "test": "jest src --coverage",
+    "start:dev": "NODE_ENV=development nodemon node_modules/.bin/babel-node src/server/index.js",
+    "test": "jest  src/ --no-cache --detectOpenHandles --runInBand --forceExit --coverage",
+    "pretest": "NODE_ENV=test yarn db:migrate",
     "db:migrate": "sequelize db:migrate",
     "db:migrate:undo": "sequelize db:migrate:undo",
     "clean": "rm -rf build && mkdir build",
@@ -24,13 +25,18 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "express-validator": "^5.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.11",
     "logger": "^0.0.1",
     "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
+    "password-hash": "^1.2.2",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^5.8.7",
-    "sequelize-cli": "^5.4.0"
+    "sequelize-cli": "^5.4.0",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "@babel/node": "^7.4.5",
