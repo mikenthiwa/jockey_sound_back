@@ -4,6 +4,12 @@ jobs: # a collection of steps
     working_directory: ~/jumia_replica # directory where steps will run
     docker: # run the steps with Docker
       - image: circleci/node:9.8.0 # ...with this image as the primary container; this is where all `steps` will run
+        environment:
+          TEST_DATABASE_URL: postgres://root@localhost/jockey_sound_db_test
+      - image: circleci/postgres:9.6.2-alpine
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: jockey_sound_db_test
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
       - run:
@@ -22,6 +28,4 @@ jobs: # a collection of steps
       - run:
           name: test
           command: npm test
-      - run:
-          name: code-coverage
-          command: './node_modules/.bin/nyc report --reporter=text-lcov'
+
